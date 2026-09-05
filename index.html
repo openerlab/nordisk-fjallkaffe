@@ -8,11 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400..800&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNiIgZmlsbD0iIzZiMjczNyIgLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LDQpIHNjYWxlKDAuNjY3KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjJlOGUyIiBzdHJva2Utd2lkdGg9IjIuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTAgMnYyIiAvPjxwYXRoIGQ9Ik0xNCAydjIiIC8+PHBhdGggZD0iTTE2IDhhMSAxIDAgMCAxIDEgMXY4YTQgNCAwIDAgMS00IDRIN2E0IDQgMCAwIDEtNC00VjlhMSAxIDAgMCAxIDEtMWgxNGE0IDQgMCAxIDEgMCA4aC0xIiAvPjxwYXRoIGQ9Ik02IDJ2MiIgLz48L2c+PC9zdmc+">
 <style>
   :root {
     --bg: #f2e8e2;
     --ink: #211714;
-    --muted: #8a6f68;
+    --muted: #6f584f;
     --accent: #6b2737;
     --line: #e0d0c9;
     --bg-alt: color-mix(in srgb, var(--bg) 85%, var(--ink) 15%);
@@ -50,6 +51,7 @@
     border-bottom: 1px solid var(--line);
   }
   .nav .inner {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,6 +74,24 @@
     opacity: 0.75;
   }
   .nav-links a:hover { opacity: 1; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+  }
 
   section { scroll-margin-top: 4.5rem; }
 
@@ -157,9 +177,32 @@
     text-align: center;
   }
 
-  @media (max-width: 560px) {
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.8rem; }
+  @media (max-width: 680px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 0.25rem 1.5rem 0.75rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1rem;
+      opacity: 1;
+    }
+    .nav-links a:last-child { border-bottom: none; }
+
+    .hero { padding: 3.5rem 0 3rem; }
+    .band { padding: 3rem 0; }
+    h1 { max-width: none; }
   }
 
   
@@ -182,7 +225,10 @@
   <header class="nav">
     <div class="inner">
       <span class="brand">Nordisk Fjällkaffe AB</span>
-      <nav class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Meny" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
         <a href="#tjanster">Tjänster</a>
         <a href="#om-oss">Om oss</a>
         <a href="#kontakt">Kontakt</a>
@@ -194,7 +240,7 @@
     <div class="inner">
       <div class="eyebrow">Östersund</div>
       <h1>Nordisk Fjällkaffe AB</h1>
-      <p class="tagline">Vi bearbetar och förädlar kaffe i Östersund.</p>
+      <p class="tagline">Kafferosteri i Östersund</p>
       <a class="cta" href="#kontakt">Kontakta oss</a>
     </div>
   </section>
@@ -204,9 +250,9 @@
       <h2>Vad vi gör</h2>
       <div class="cards">
           <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M10 2v2" /><path d="M14 2v2" /><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" /><path d="M6 2v2" /></svg><span>Rostning av kaffebönor</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /><path d="M12 22V12" /><polyline points="3.29 7 12 12 20.71 7" /><path d="m7.5 4.27 9 5.15" /></svg><span>Förpackning och leverans</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16 9-5.5 5.5L8 12" /></svg><span>Anpassade blandningar efter önskemål</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M15 18H9" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" /></svg><span>Leverans till företag och butiker</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /><path d="M12 22V12" /><polyline points="3.29 7 12 12 20.71 7" /><path d="m7.5 4.27 9 5.15" /></svg><span>Egen paketering</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M15 18H9" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" /></svg><span>Leverans till butik och restaurang</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16 9-5.5 5.5L8 12" /></svg><span>Anpassade rostningar på beställning</span></div>
       </div>
     </div>
   </section>
@@ -214,14 +260,14 @@
   <section id="om-oss" class="band">
     <div class="inner">
       <h2>Om oss</h2>
-      <p>Nordisk Fjällkaffe AB arbetar med bearbetning av te och kaffe. Vi håller till i Östersund och levererar till kunder som vill ha kaffe av god kvalitet. Hör av dig om du vill veta mer om vårt sortiment.</p>
+      <p>Vi bearbetar och rostar kaffe i mindre skala. Kaffet packas och levereras vidare till butik och grossist. Vi håller till i Östersund.</p>
     </div>
   </section>
 
   <section id="kontakt" class="band band-cta">
     <div class="inner">
       <h2>Kontakt</h2>
-      <p>Hör av dig för mer information eller offert</p>
+      <p>Hör av dig för offert eller provbeställning</p>
       <a class="cta" href="mailto:info@example.se">Kontakta oss</a>
     </div>
   </section>
@@ -229,5 +275,22 @@
   <footer>
     Nordisk Fjällkaffe AB · Org.nr 5591234567
   </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var links = document.getElementById('nav-links');
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
