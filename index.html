@@ -55,14 +55,9 @@
     padding: 2rem 0;
     border-top: 1px solid var(--line);
   }
-  /* Inverted-pyramid taper: each section narrows and centers a bit more
-     than the last, so the page visually funnels toward a single, isolated
-     CTA at the end — one destination, not a menu of competing choices. */
-  section:nth-of-type(1) { max-width: 620px; }
-  section:nth-of-type(2) { max-width: 500px; margin-left: auto; margin-right: auto; }
+  /* Choice architecture: the CTA is the one action on the page, so it gets
+     isolation and visual weight instead of competing with a section label. */
   section:nth-of-type(3) {
-    max-width: 360px;
-    margin: 2rem auto 0;
     text-align: center;
     border-top: none;
     padding-top: 0;
@@ -146,27 +141,27 @@
     <header>
       <div class="eyebrow">Östersund</div>
       <h1>Nordisk Fjällkaffe</h1>
-      <p class="tagline">Vi rostar och förädlar kaffe i Östersund.</p>
+      <p class="tagline">Kafferosteri i Östersund som bearbetar te och kaffe.</p>
     </header>
-
-    <section>
-      <h2>Om oss</h2>
-      <p>Nordisk Fjällkaffe AB arbetar med bearbetning av kaffe och te. Vi tar råvaran och förädlar den till färdiga produkter för vidare försäljning. Verksamheten finns i Östersund.</p>
-    </section>
 
     <section>
       <h2>Vad vi gör</h2>
       <ul>
-            <li>Rostning av kaffebönor</li>
-            <li>Bearbetning av te</li>
-            <li>Förpackning av kaffe- och teprodukter</li>
-            <li>Leverans till återförsäljare</li>
+            <li>Kafferostning</li>
+            <li>Te- och kaffeberedning</li>
+            <li>Egna blandningar på beställning</li>
+            <li>Leverans till butik och företag</li>
       </ul>
     </section>
 
     <section>
+      <h2>Om oss</h2>
+      <p>Vi håller till i Östersund och arbetar med bearbetning av kaffe och te. Fokus ligger på hantverk och jämn kvalitet i varje sats. Vi levererar till både privatpersoner och företag i regionen.</p>
+    </section>
+
+    <section>
       <h2>Kontakt</h2>
-      <p>Hör av dig för mer information</p>
+      <p>Hör av dig för mer information eller offert</p>
       <a class="cta" href="mailto:info@example.se">Kontakta oss</a>
     </section>
 
